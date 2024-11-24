@@ -8,56 +8,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-     /* 样式化搜索表单 */
+
 .search-form {
     position: fixed;
-    top: 20px; /* 根据需要调整距离顶部的距离 */
+    top: 20px; 
     left: 45%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    z-index: 999; /* 确保在其它元素之上 */
-    transition: transform 1s ease; /* 过渡效果用于放大效果 */
+    z-index: 999;
+    transition: transform 1s ease; /* 放大 */
 }
 
-/* 样式化输入框和按钮为一个整体 */
+
 .search-form .search-input,
 .search-form .search-button {
     border: none;
     outline: none;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.5); /* 初始透明度50% */
+    background-color: rgba(255, 255, 255, 0.5); /* 50% */
     color: #333;
     font-size: 16px;
-    transition: background-color 2s ease, transform 0.3s ease; /* 过渡效果 */
+    transition: background-color 2s ease, transform 0.3s ease; 
 }
 
-/* 移除按钮的默认样式，使其看起来像输入框的一部分 */
+
 .search-form .search-button {
     background: transparent;
-    border-left: none; /* 移除左侧边框，与输入框融为一体 */
+    border-left: none; 
     cursor: pointer;
 }
 
-/* 样式化输入框，给它一个左侧边框 */
+
 .search-form .search-input {
-    border-radius: 5px 0 0 5px; /* 左侧圆角 */
-    border-right: none; /* 移除右侧边框，使按钮看起来更融入 */
+    border-radius: 5px 0 0 5px; 
+    border-right: none; 
 }
 
-/* 悬停时效果 */
+
 .search-form:hover {
-    transform: scale(1.5) translateY(10px); /* 放大并稍微向下移动 */
+    transform: scale(1.5) translateY(10px); 
 }
 
 .search-form:hover .search-input,
 .search-form:hover .search-button {
-    background-color: rgba(255, 255, 255, 0.8); /* 悬停时透明度提高至80% */
+    background-color: rgba(255, 255, 255, 0.8); 
 }
 
-/* 聚焦时输入框样式变化（可选） */
+
 .search-form .search-input:focus {
-    background-color: white; /* 聚焦时完全透明 */
+    background-color: white; /* 完全透明 */
 }
 
 
@@ -88,19 +88,18 @@
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
-                background-position: center center; /* 水平垂直都居中 .图片在左上角显示，可以设置为：background-position: left top;
-                想让图片在右下角显示，并稍微向右下方偏移 50px，可以设置为：background-position: right bottom 50px; /* 垂直位置为底部，水平位置为从右边偏移50px */*/
+                background-position: center center; 
         }
 
         .video-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 120px; /* 向上移动 */
+    margin-top: 120px; 
 }
 
         .video-item {
-            flex: 0 0 calc((100% - 16px) / 8); /* 8 items per row, 16px for margins */
+            flex: 0 0 calc((100% - 16px) / 8); 
             margin: 8px;
             position: relative;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -109,7 +108,7 @@
         }
 
         .video-thumbnail-wrapper {
-            padding-top: 75%; /* 4:3 aspect ratio */
+            padding-top: 75%; /* 4:3 */
             position: relative;
         }
 
@@ -141,10 +140,10 @@
             opacity: 1;
         }
 
-        /* For responsive layout */
+
         @media screen and (max-width: 800px) {
             .video-item {
-                flex: 0 0 calc((100% - 16px) / 4); /* 4 items per row on small screens */
+                flex: 0 0 calc((100% - 16px) / 4); 
             }
         }
 
@@ -161,7 +160,7 @@
 
 
 
-    <!-- ... 其他内容 ... -->
+
 <div class="video-container">
         {% for video in videos %}
         <a href="{{ url_for('video_detail', video_name=video) }}" class="video-item" target="_blank">
@@ -173,20 +172,20 @@
         {% endfor %}
     </div>
     <script>
-    // 确保DOM已加载
+
     	document.addEventListener('DOMContentLoaded', function() {
     var titles = document.getElementsByClassName('video-title');
     for (var i = 0; i < titles.length; i++) {
         var title = titles[i];
-        var originalTitle = title.getAttribute('data-original-title'); // 获取原始标题（带下划线的）
+        var originalTitle = title.getAttribute('data-original-title'); 
 
-        // 使用正则表达式匹配第一个_和最后一个_之间的内容（如果存在）
+
         var match = originalTitle.match(/^.*?_(.*?)(?:_[^_]*)?$/);
         if (match && match[1]) {
-            // 如果找到匹配项，则更新显示的标题
+
             title.textContent = match[1];
         } else {
-            // 如果没有找到匹配项，则显示原始标题
+
             title.textContent = originalTitle;
         }
     }
