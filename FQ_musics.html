@@ -14,13 +14,13 @@
         .music-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start; /* 确保从左往右开始 */
+            justify-content: flex-start;
             padding: 0;
             list-style: none;
         }
 
         .music-item {
-            flex: 0 0 200px; /* 每个列表项的基础宽度，可以根据需要调整 */
+            flex: 0 0 200px;
             margin: 10px;
             text-align: center;
             background-color: #00000;
@@ -28,7 +28,7 @@
             border-radius: 5px;
             border-color:#000000;
             padding: 10px;
-            box-sizing: border-box; /* 包括padding和border在内的宽度 */
+            box-sizing: border-box;
         }
 
         .music-item img {
@@ -39,14 +39,14 @@
         }
 
         .music-item a {
-            text-decoration: none; /* 移除超链接的下划线 */
-            color: #333; /* 你可以根据需要调整链接颜色 */
-            display: block; /* 使整个列表项可点击 */
+            text-decoration: none; 
+            color: #333; 
+            display: block;
         }
 
         .music-title {
-            font-size: 16px; /* 你可以根据需要调整字体大小 */
-            margin-top: 10px; /* 图片和文字之间的间距 */
+            font-size: 16px;
+            margin-top: 10px; 
         }
     </style>
 </head>
@@ -54,24 +54,23 @@
    <h1></h1>
     <ul class="music-list">
     {% for music in musics %}
-        <!-- 提取第一个_和最后一个_之间的内容 -->
+       
         {% set split_music = music.split('_') %}
         {% if split_music|length > 2 %}
-            <!-- 确保至少有两个_来提取中间的内容 -->
-            {% set start_index = 1 %} <!-- 第一个_之后的位置 -->
-            {% set end_index = split_music|length - 1 %} <!-- 最后一个_之前的位置 -->
+           
+            {% set start_index = 1 %} 
+            {% set end_index = split_music|length - 1 %} 
             {% set music_title = '_'.join(split_music[start_index:end_index]) %}
         {% elif split_music|length == 2 %}
-            <!-- 如果有两个_，但不需要第一个部分 -->
+         
             {% set music_title = split_music[1] %}
         {% else %}
-            <!-- 如果没有_，则直接使用原始标题 -->
+       
             {% set music_title = music %}
         {% endif %}
 
         <li class="music-item">
-            <!-- 假设图片和视频在同一目录下，图片命名为视频名加上扩展名如 "name.jpg" -->
-            <!-- 这里直接使用原始的music变量来生成图片URL -->
+
             <a href="{{ url_for('video_detail', video_name=music) }}" target="_blank">
                 <img src="{{ url_for('send_image', filename=music ~ '.jpg') }}" alt="{{ music_title }}" width="200" height="150">
             </a>
