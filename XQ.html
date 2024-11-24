@@ -11,33 +11,33 @@
 
 
 
-        /* 样式化整个列表 */
+
         .similar-videos {
-            list-style: none; /* 移除默认的列表样式 */
-            padding: 0; /* 移除默认的padding */
-            margin: 0; /* 移除默认的margin */
+            list-style: none;
+            padding: 0; 
+            margin: 0;
         }
 
-        /* 样式化列表项 */
+
         .similar-videos li {
-            display: inline-block; /* 使得列表项并排显示 */
-            margin-right: 10px; /* 添加一些右侧间距 */
+            display: inline-block; 
+            margin-right: 10px; 
         }
 
-        /* 样式化按钮 */
+
         .video-button {
-            display: inline-block; /* 使得按钮像块级元素一样，但可以并排显示 */
-            padding: 10px 20px; /* 添加内边距 */
-            background-color: #202020; /* 设置背景色 */
-            color: white; /* 设置文本颜色 */
-            text-decoration: none; /* 移除下划线 */
-            border-radius: 5px; /* 添加圆角 */
-            transition: background-color 0.3s ease; /* 添加过渡效果 */
+            display: inline-block; 
+            padding: 10px 20px; 
+            background-color: #202020; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            transition: background-color 0.3s ease; 
         }
 
-        /* 样式化按钮点击后的效果（可选） */
+
         .video-button:hover {
-                background-color: #000000; /* 更改鼠标悬停时的背景色 */
+                background-color: #000000; 
         }
 
 
@@ -54,22 +54,22 @@
         text-decoration: none;
         }
 
-         /* CSS样式将放在这里 */
 
 
-	        /* 长方形框样式 */
+
+
         .content-box {
             margin-top: 20px;
             border: 1px solid #000000;
             padding: 20px;
         }
 
-        /* 评论内容样式 */
+
         .content-box h3 p {
             color: #000000;
         }
 
-        	        /* 提交评论表单样式 */
+        	    
         .comment-form {
             display: flex;
             align-items: center;
@@ -78,101 +78,101 @@
 
         .comment-form input[type="text"] {
             flex: 1;
-            max-width: 600px; /* 设置最大宽度 */
+            max-width: 600px; 
             padding: 10px;
             font-size: 16px;
-            border-radius: 5px; /* 添加圆角 */
-            /* 通常情况下，输入框的高度不会改变，所以你可能想要改变其他属性，比如padding */
-            background-color: rgba(0, 0, 0, 0.5); /* 初始背景色，带有50%的透明度 */
-            transition: background-color 1s ease-in-out; /* 背景色动态效果 */
+            border-radius: 5px; 
+      
+            background-color: rgba(0, 0, 0, 0.5); 
+            transition: background-color 1s ease-in-out; 
         }
 
         .comment-form input[type="text"]:hover {
-            /* 你可以考虑增加padding而不是height来改变大小，因为改变height可能会导致布局问题 */
-            padding: 10px 15px; /* 悬停时稍微增加内边距 */
-            background-color: rgba(0, 0, 0, 0.8); /* 悬停时背景色，带有80%的透明度 */
-            transition: background-color 1s ease-in-out; /* 背景色动态效果 */
+  
+            padding: 10px 15px;
+            background-color: rgba(0, 0, 0, 0.8); 
+            transition: background-color 1s ease-in-out; 
 
         }
 
         .comment-form input[type="submit"] {
-            margin-left: 10px; /* 左侧与输入框保持一些间距 */
+            margin-left: 10px;
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #778899; /* 提交按钮颜色 */
+            background-color: #778899; 
             border: none;
             color: white;
             cursor: pointer;
-            border-radius: 5px; /* 添加圆角 */
-            background-color: rgba(0, 0, 0, 0.5); /* 初始背景色，带有50%的透明度 */
-            transition: background-color 1s ease-in-out; /* 提交按钮背景色动态效果 */
+            border-radius: 5px; 
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 1s ease-in-out; 
         }
 
         .comment-form input[type="submit"]:hover {
-            background-color: rgba(0, 0, 0, 0.8); /* 悬停时背景色，带有80%的透明度 */
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        /* 评论列表样式 */
+
         .comment-list {
             list-style-type: none;
             padding: 0;
         }
 
         .comment-list li {
-            margin-bottom: 10px; /* 评论之间有些间隔 */
+            margin-bottom: 10px; 
         }
 
 
-         /* 样式化搜索表单 */
+
 .search-form {
     position: fixed;
-    top: 20px; /* 根据需要调整距离顶部的距离 */
+    top: 20px; 
     left: 45%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    z-index: 999; /* 确保在其它元素之上 */
-    transition: transform 1s ease; /* 过渡效果用于放大效果 */
+    z-index: 999; 
+    transition: transform 1s ease; 
 }
 
-/* 样式化输入框和按钮为一个整体 */
+
 .search-form .search-input,
 .search-form .search-button {
     border: none;
     outline: none;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.5); /* 初始透明度50% */
+    background-color: rgba(255, 255, 255, 0.5);
     color: #333;
     font-size: 16px;
-    transition: background-color 2s ease, transform 0.3s ease; /* 过渡效果 */
+    transition: background-color 2s ease, transform 0.3s ease; 
 }
 
-/* 移除按钮的默认样式，使其看起来像输入框的一部分 */
+
 .search-form .search-button {
     background: transparent;
-    border-left: none; /* 移除左侧边框，与输入框融为一体 */
+    border-left: none; 
     cursor: pointer;
 }
 
-/* 样式化输入框，给它一个左侧边框 */
+
 .search-form .search-input {
     border-radius: 5px 0 0 5px; /* 左侧圆角 */
-    border-right: none; /* 移除右侧边框，使按钮看起来更融入 */
+    border-right: none; 
 }
 
-/* 悬停时效果 */
+
 .search-form:hover {
-    transform: scale(1.5) translateY(10px); /* 放大并稍微向下移动 */
+    transform: scale(1.5) translateY(10px); 
 }
 
 .search-form:hover .search-input,
 .search-form:hover .search-button {
-    background-color: rgba(255, 255, 255, 0.8); /* 悬停时透明度提高至80% */
+    background-color: rgba(255, 255, 255, 0.8); /* 悬停时透明度80% */
 }
 
-/* 聚焦时输入框样式变化（可选） */
+
 .search-form .search-input:focus {
-    background-color: white; /* 聚焦时完全透明 */
+    background-color: white; 
 }
 
 
@@ -189,20 +189,17 @@
 <a href="http://[{{ ipv6_address }}]:80/"><h1 style="color: #000000">&nbsp;
     {% set parts = video_name.split('_') %}
     {% if parts|length > 2 %}
-        <!-- 如果有多于两个的部分，则连接中间的所有部分 -->
         {{ '_'.join(parts[1:-1]) }}
     {% elif parts|length == 2 %}
-        <!-- 如果只有两个部分，则显示第二个部分 -->
         {{ parts[1] }}
     {% else %}
-        <!-- 如果只有一个部分或没有部分，则显示整个字符串或什么都不显示（取决于你的需求） -->
         {{ video_name }}
     {% endif %}
 </h1></a>
 
-<!-- 使用 flexbox 布局包裹视频、文本内容和相似视频链接 -->
+
 <div style="display: flex;">
-    <!-- 视频播放区域 -->
+
    	<div style="flex: 1; padding-right: 20px;">
         <!-- 省略其他内容 -->&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;
         <video id="myVideo" width="950" height="700" controls>
@@ -215,26 +212,25 @@
                 // 设置默认音量
                 video.volume = 0.03;
 
-                // 如果还想在视频开始播放时也设置音量，可以添加一个事件监听器
+
                 video.addEventListener('play', function() {
                     this.volume = 0.03;
                 });
             };
         </script>
 
-<!-- 文本内容区域，使用长方形框包裹 -->
     <div class="content-box">
-        <!-- 长方形框样式 -->
+
 
         {% if txt_content %}
         <h3>
-            <p>{{ txt_content|safe }}</p> <!-- 如果 txt_content 包含HTML，使用 |safe 允许渲染HTML -->
+            <p>{{ txt_content|safe }}</p> 
         </h3>
         {% else %}
         <p>无详情....</p>
         {% endif %}
 
-        <!-- 提交评论表单 -->
+
         <form class="comment-form" method="post" action="{{ url_for('video_detail', video_name=video_name) }}">
             <input type="text" name="comment" placeholder="写评论...">
             <input type="submit" value="提交">
@@ -242,7 +238,7 @@
 
         <hr style='background-color:black; height:1px; border:none;'/>
 
-        <!-- 评论列表 -->
+
         <h3>评论:</h3>
         <ul class="comment-list">
             {% for comment in comments %}
@@ -256,8 +252,8 @@
 
     <div style="flex: 0 0 300px; margin-left: 20px; border: 1px solid #000000; padding: 10px;">
     <ul class="similar-videos" style="list-style: none; padding: 0; margin: 0;">
-    {% for video in similar_videos_by_id %} <!-- similar_videos_by_id是一个列表 -->
-        {% set parts = video.split('_') %}<!-- 相似视频列表并且对名字进行处理 -->
+    {% for video in similar_videos_by_id %} 
+        {% set parts = video.split('_') %}
         {% if parts|length > 2 %}
             <li style="margin-bottom: 10px;">
                 <a href="{{ url_for('video_detail', video_name=video) }}" class="video-button">
