@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传</title>
+    <script>
+        function checkFiles() {
+            var imageInput = document.querySelector('input[name="image"]');
+            var videoInput = document.querySelector('input[name="video"]');
+            var textInput = document.querySelector('input[name="text"]');
+            var filenameInput = document.querySelector('input[name="filename"]');
+            var uploadButton = document.getElementById('upload-button');
+
+            // 检查文件输入和文件名是否都已填写
+            if (imageInput.files.length > 0 && videoInput.files.length > 0 && textInput.files.length > 0 && filenameInput.value.trim() !== '') {
+                uploadButton.disabled = false; // 启用上传按钮
+            } else {
+                uploadButton.disabled = true; // 禁用上传按钮
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .file-hint {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="file"],
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:disabled {
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>上传</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="image">图片:</label>
+            <input type="file" name="image" accept=".jpg, .jpeg" required onchange="checkFiles()">
+            <p class="file-hint">请上传图片(.jpg, .jpeg).</p>
+        </div>
+        <div class="form-group">
+            <label for="video">视频:</label>
+            <input type="file" name="video" accept=".mp4" required onchange="checkFiles()">
+            <p class="file-hint">请上传视频(.mp4).</p>
+        </div>
+        <div class="form-group">
+            <label for="text">文本:</label>
+            <input type="file" name="text" accept=".txt" required onchange="checkFiles()">
+            <p class="file-hint">请上传文本(.txt).</p>
+        </div>
+        <div class="form-group">
+            <label for="filename">名字:</label>
+            <input type="text" name="filename" placeholder="填入视频名字" required oninput="checkFiles()">
+            <p class="file-hint">请填入视频名字.</p>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="上传" id="upload-button" disabled>
+        </div>
+    </form>
+</body>
+</html>

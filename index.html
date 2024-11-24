@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="http://[{{ ipv6_address }}]:83/ZS/TB_F2.jpg" rel="shortcut icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频</title>
+    <style>
+        /* 样式化搜索表单 */
+.search-form {
+    position: fixed;
+    top: 20px; /* 根据需要调整距离顶部的距离 */
+    left: 45%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 999; /* 确保在其它元素之上 */
+    transition: transform 1s ease; /* 过渡效果用于放大效果 */
+}
+
+/* 样式化输入框和按钮为一个整体 */
+.search-form .search-input,
+.search-form .search-button {
+    border: none;
+    outline: none;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5); /* 初始透明度50% */
+    color: #333;
+    font-size: 16px;
+    transition: background-color 2s ease, transform 0.3s ease; /* 过渡效果 */
+}
+
+/* 移除按钮的默认样式，使其看起来像输入框的一部分 */
+.search-form .search-button {
+    background: transparent;
+    border-left: none; /* 移除左侧边框，与输入框融为一体 */
+    cursor: pointer;
+}
+
+/* 样式化输入框，给它一个左侧边框 */
+.search-form .search-input {
+    border-radius: 5px 0 0 5px; /* 左侧圆角 */
+    border-right: none; /* 移除右侧边框，使按钮看起来更融入 */
+}
+
+/* 悬停时效果 */
+.search-form:hover {
+    transform: scale(1.5) translateY(10px); /* 放大并稍微向下移动 */
+}
+
+.search-form:hover .search-input,
+.search-form:hover .search-button {
+    background-color: rgba(255, 255, 255, 0.8); /* 悬停时透明度提高至80% */
+}
+
+/* 聚焦时输入框样式变化（可选） */
+.search-form .search-input:focus {
+    background-color: white; /* 聚焦时完全透明 */
+}
+
+
+
+
+
+        /* 样式化按钮列表 */
+.button-list {
+    list-style: none; /* 移除默认的列表样式 */
+    padding: 0; /* 移除默认的padding */
+    margin: 0; /* 移除默认的margin */
+}
+
+/* 样式化列表项 */
+.button-list li {
+    margin-bottom: 35px; /* 添加一些底部间距 */
+}
+
+.video-button {
+    display: inline-block; /* 使得按钮像块级元素一样，但可以处理内边距和宽度 */
+    padding: 20px 50px; /* 添加内边距 */
+    /* 注意：这里的宽度设置可能与你想要的效果不符，因为内边距会包含在元素的总宽度内，
+       如果你想要按钮整体宽度为固定值（包括内边距和边框），你可能需要减去内边距和边框的宽度 */
+    /* width: 50px; 这可能会使按钮太小，因为你还有20px的内边距左右各一个 */
+    min-width: 80px; /* 例如，这里设置最小宽度为120px，确保按钮足够大以显示文本 */
+    background-color: #202020; /* 设置背景色 */
+    color: white; /* 设置文本颜色 */
+    text-decoration: none; /* 移除下划线 */
+    border-radius: 5px; /* 添加圆角 */
+    transition: background-color 1s ease, opacity 0.5s ease; /* 添加过渡效果，包括背景色和不透明度 */
+    text-align: center; /* 确保文本在按钮中居中 */
+    /* overflow, text-overflow, 和 white-space 对于按钮文本内容溢出时有用，
+       但通常按钮文本不会太长以至于需要这些属性 */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+    opacity: 0.3; /* 设置不透明度为0.8（80%的不透明度） */
+}
+
+/* 样式化按钮点击后的效果 */
+.video-button:hover {
+    background-color: #000000; /* 更改鼠标悬停时的背景色 */
+    opacity: 0.8; /* 设置不透明度为0.8（80%的不透明度） */
+}
+
+
+
+
+        body {
+                background-image: url('http://[{{ ipv6_address }}]:83/ZS/BJ_ayanami01.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                }
+
+
+
+
+
+        /* 去掉所有超链接的下划线 */
+        a {
+            text-decoration: none;
+        }
+
+        .div2{
+	            width: 100%px;
+	            height: 100%px;
+	            background-color: rgba(255, 0, 0, 0);
+	            /*border: 1px solid black;*/
+	            opacity: 0.8;
+	            z-index: 999;
+        }
+
+        .div3 {
+                background-image: url('http://[{{ ipv6_address }}]:83/ZS/BJ_ayanami01.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                background-position: center center; /* 水平垂直都居中 .图片在左上角显示，可以设置为：background-position: left top;
+                想让图片在右下角显示，并稍微向右下方偏移 50px，可以设置为：background-position: right bottom 50px; /* 垂直位置为底部，水平位置为从右边偏移50px */*/
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .video-item {
+            flex: 0 0 calc((100% - 16px) / 8); /* 8 items per row, 16px for margins */
+            margin: 8px;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 40px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail-wrapper {
+            padding-top: 75%; /* 4:3 aspect ratio */
+            position: relative;
+        }
+
+        .video-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-title {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            margin: 0;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .video-item:hover .video-title {
+            opacity: 1;
+        }
+
+        /* For responsive layout */
+        @media screen and (max-width: 800px) {
+            .video-item {
+                flex: 0 0 calc((100% - 16px) / 4); /* 4 items per row on small screens */
+            }
+        }
+
+#header {
+        background-color: #00000;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+    }
+
+    #header-links {
+        display: flex;
+        align-items: center;
+    }
+
+    #header h6 {
+        color: #FFFFFF;
+        text-decoration: none;
+        margin-right: 90px;
+    }
+
+    #header a:last-child {
+        margin-right: 0;
+    }
+
+    #header img {
+        height: 60px;
+    }
+    </style>
+</head>
+<body>
+
+<form action="{{ url_for('search') }}" method="get" target="_blank" class="search-form">
+    <input type="text" name="query" placeholder="看飞碟!..." class="search-input">
+    <button type="submit" class="search-button">搜索~</button>
+</form>
+
+<div id="header" class="div2">
+    <div id="header-links">
+        <h6><a href="http://[{{ ipv6_address }}]:80/" target="_blank" style="color: #FFFFFF;">首页</a></h6>
+        <h6><a href="http://[{{ ipv6_address }}]:83/" target="_blank" style="color: #FFFFFF;">下载</a></h6>
+        <h6><a href="http://[{{ ipv6_address }}]:84/" target="_blank" style="color: #FFFFFF;">摄像头</a></h6>
+        <h6><a href="http://[{{ ipv6_address }}]:85/" target="_blank" style="color: #FFFFFF;">直播</a></h6>
+        <h6><a href="http://[{{ ipv6_address }}]:86/" target="_blank" style="color: #FFFFFF;">聊天室</a></h6>
+    </div>
+    <div>
+
+        <h1><a href="http://[{{ ipv6_address }}]:80/SC/" style="color: #FFFFFF; margin-left: 60px;" target="_blank">上传视频</a></h1>
+    </div>
+</div>
+<!--style="background-color:#000000;height:300px;width:200px;float:left;" class="div2">-->
+<div style="background-color:#00000;height:700px;width:200px;float:left;" class="div2">
+    <ul class="button-list">
+        <li><a href="{{ url_for('special_movies') }}" class="video-button" target="_blank">电影</a></li>
+        <li><a href="{{ url_for('special_TVss') }}" class="video-button" target="_blank">电视剧</a></li>
+        <li><a href="{{ url_for('special_animes') }}" class="video-button" target="_blank">动漫</a></li>
+        <li><a href="{{ url_for('special_musics') }}" class="video-button" target="_blank">音乐</a></li>
+        <li><a href="{{ url_for('special_amuses') }}" class="video-button" target="_blank">娱乐</a></li>
+        <li><a href="{{ url_for('special_techs') }}" class="video-button" target="_blank">科技</a></li>
+        <li><a href="{{ url_for('special_knows') }}" class="video-button" target="_blank">知识</a></li>
+        <li><a href="{{ url_for('special_livings') }}" class="video-button" target="_blank">生活</a></li>
+    </ul>
+</div>
+    <div class="video-container">
+        {% for video in videos %}
+        <a href="{{ url_for('video_detail', video_name=video) }}" class="video-item" target="_blank">
+            <div class="video-thumbnail-wrapper">
+                <img class="video-thumbnail" src="{{ url_for('send_image', filename=video ~ '.jpg') }}" alt="{{ video }}">
+            </div>
+            <div class="video-title" style="color: #FFFFFF" data-original-title="{{ video }}">{{ video }}</div>
+        </a>
+        {% endfor %}
+    </div>
+    <script>
+    // 确保DOM已加载
+    	document.addEventListener('DOMContentLoaded', function() {
+    var titles = document.getElementsByClassName('video-title');
+    for (var i = 0; i < titles.length; i++) {
+        var title = titles[i];
+        var originalTitle = title.getAttribute('data-original-title'); // 获取原始标题（带下划线的）
+
+        // 使用正则表达式匹配第一个_和最后一个_之间的内容（如果存在）
+        var match = originalTitle.match(/^.*?_(.*?)(?:_[^_]*)?$/);
+        if (match && match[1]) {
+            // 如果找到匹配项，则更新显示的标题
+            title.textContent = match[1];
+        } else {
+            // 如果没有找到匹配项，则显示原始标题
+            title.textContent = originalTitle;
+        }
+    }
+});
+</script>
+
+
+
+</body>
+</html>

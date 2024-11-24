@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://[{{ ipv6_address }}]:83/ZS/TB_F2.jpg" rel="shortcut icon">
+    <title>知识分区</title>
+    <style>
+        body {
+                background-image: url('http://[{{ ipv6_address }}]:83/ZS/BJ_ayanami01.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                }
+
+        .know-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start; /* 确保从左往右开始 */
+            padding: 0;
+            list-style: none;
+        }
+
+        .know-item {
+            flex: 0 0 200px; /* 每个列表项的基础宽度，可以根据需要调整 */
+            margin: 10px;
+            text-align: center;
+            background-color: #00000;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            border-color:#000000;
+            padding: 10px;
+            box-sizing: border-box; /* 包括padding和border在内的宽度 */
+        }
+
+        .know-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .know-item a {
+            text-decoration: none; /* 移除超链接的下划线 */
+            color: #333; /* 你可以根据需要调整链接颜色 */
+            display: block; /* 使整个列表项可点击 */
+        }
+
+        .know-title {
+            font-size: 16px; /* 你可以根据需要调整字体大小 */
+            margin-top: 10px; /* 图片和文字之间的间距 */
+        }
+    </style>
+</head>
+<body>
+   <h1></h1>
+    <ul class="know-list">
+    {% for know in knows %}
+        <!-- 提取第一个_和最后一个_之间的内容 -->
+        {% set split_know = know.split('_') %}
+        {% if split_know|length > 2 %}
+            <!-- 确保至少有两个_来提取中间的内容 -->
+            {% set start_index = 1 %} <!-- 第一个_之后的位置 -->
+            {% set end_index = split_know|length - 1 %} <!-- 最后一个_之前的位置 -->
+            {% set know_title = '_'.join(split_know[start_index:end_index]) %}
+        {% elif split_know|length == 2 %}
+            <!-- 如果有两个_，但不需要第一个部分 -->
+            {% set know_title = split_know[1] %}
+        {% else %}
+            <!-- 如果没有_，则直接使用原始标题 -->
+            {% set know_title = know %}
+        {% endif %}
+
+        <li class="know-item">
+            <!-- 假设图片和视频在同一目录下，图片命名为视频名加上扩展名如 "name.jpg" -->
+            <!-- 这里直接使用原始的know变量来生成图片URL -->
+            <a href="{{ url_for('video_detail', video_name=know) }}" target="_blank">
+                <img src="{{ url_for('send_image', filename=know ~ '.jpg') }}" alt="{{ know_title }}" width="200" height="150">
+            </a>
+            <p>{{ know_title }}</p>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
