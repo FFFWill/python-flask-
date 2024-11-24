@@ -27,7 +27,7 @@ def index():
     videos = []
     videos_dir = os.path.join(app.root_path, 'videos')
     for filename in os.listdir(videos_dir):
-        if filename.endswith('.mp4'):  # 假设视频都是.mp4格式
+        if filename.endswith('.mp4'):  # .mp4格式
             videos.append(filename[:-4])  # 移除文件扩展名以获取视频名字
     print(len(videos))
     # 将视频列表传递给HTML模板
@@ -49,12 +49,12 @@ def search():
 
 @app.route('/videos/<filename>')
 def send_video(filename):
-    # 发送视频文件
+    # 发送视频
     return send_from_directory('videos', filename)
 
 @app.route('/images/<filename>')
 def send_image(filename):
-    # 发送图片文件，确保图片扩展名是.jpg或其他使用的格式
+    # .jpg
     return send_from_directory('images', filename)
 
 
@@ -95,7 +95,7 @@ def video_detail(video_name):
         return 'Video not found', 404
 
 def extract_id_from_filename(filename):
-    # 假设ID是文件名中最后一个下划线之后的所有内容
+
     parts = filename.rsplit('_', 1)
     if len(parts) > 1 and parts[-1].isdigit():
         return parts[-1]
@@ -258,8 +258,7 @@ def special_livings():
 
 
 def extract_key_part(video_name):
-    # 这里简单地移除前缀"电影_"和文件扩展名".mp4"
-    # 你可能需要根据实际情况调整这个逻辑
+
     return video_name.replace('电影_', '').replace('影剧_', '').replace('动漫_', '').replace('音乐_', '').replace('娱乐_', '').replace('科技_', '').replace('知识_', '').replace('生活_', '').replace('.mp4', '')
 
 
