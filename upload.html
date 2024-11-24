@@ -11,11 +11,11 @@
             var filenameInput = document.querySelector('input[name="filename"]');
             var uploadButton = document.getElementById('upload-button');
 
-            // 检查文件输入和文件名是否都已填写
+
             if (imageInput.files.length > 0 && videoInput.files.length > 0 && textInput.files.length > 0 && filenameInput.value.trim() !== '') {
-                uploadButton.disabled = false; // 启用上传按钮
+                uploadButton.disabled = false; 
             } else {
-                uploadButton.disabled = true; // 禁用上传按钮
+                uploadButton.disabled = true; 
             }
         }
     </script>
